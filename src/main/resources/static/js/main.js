@@ -16,7 +16,20 @@ var colors = [
     '#2196F3', '#32c787', '#00BCD4', '#ff5652',
     '#ffc107', '#ff85af', '#FF9800', '#39bbb0'
 ];
+/*
 
+username = document.querySelector('#name').value;
+localStorage.setItem('key',username)
+let val = localStorage.getItem('key');
+console.log(val);
+*/
+/*
+window.onload = function(){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open( "PUT", 'http://localhost:8082/taskmanager?', false );
+    xmlHttp.send( null );
+      xmlHttp.responseText = document.querySelector('#name').value.trim();
+}*/
 function connect(event) {
     username = document.querySelector('#name').value.trim();
 
@@ -115,6 +128,12 @@ function getAvatarColor(messageSender) {
     return colors[index];
 }
 
+/*function setUserToLocalstorage(event){
+   localStorage.setItem( "username", name);
+   Console.log(event);
+}*/
+
 usernameForm.addEventListener('submit', connect, true)
+//registrationForm.addEventListener('submit', setUserToLocalstorage, true)
 
 messageForm.addEventListener('submit', send, true)

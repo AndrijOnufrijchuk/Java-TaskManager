@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org"
-      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" layout:decorate="~{default}">
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout" xmlns:sec="http://www.w3.org/1999/xhtml"
+      layout:decorate="~{default}">
 <head>
     <title>Login</title>
 </head>
@@ -8,32 +9,47 @@
 <body class="text-center">
 <div layout:fragment="content">
 
-    <form class="form-signin" th:action="@{/login}" method="post">
-        <!-- You will not be able to see this text. -->
+    <form class="form-signin"  th:action="@{/login}" method="post">
+
 
 
         <img class="mb-4" src="https://getbootstrap.com/assets/brand/bootstrap-solid.svg" alt="" width="72" height="72" />
+        <h4> <div sec:authorize="isAuthenticated()">
+            Authenticated as <span sec:authentication="name"> </span> <br> Now you can go <br> to task manager</div>
+        </h4>
         <h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+
         <div th:if="${param.error}">
             Invalid email and password.
         </div>
         <div th:if="${param.logout}">
             You have been logged out.
         </div>
+
         <label for="inputEmail" class="sr-only">Email address</label>
         <input type="email" name="email" id="inputEmail" class="form-control" placeholder="Email" required="" />
+
         <label for="inputPassword" class="sr-only">Password</label>
         <input type="password" name="password" id="inputPassword" class="form-control" placeholder="Password" required="" />
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign in</button></form>
+
+
+
+        <button class="btn btn-lg btn-primary btn-block" type="submit" >Sign in</button></form>
 
 
 
     <form class="form-signin" th:action="@{/signup}" method="get">
         <button class="btn btn-md btn-success btn-block" type="Submit">Signup Here</button>
     </form>
-    <form class="form-signin" th:action="@{/taskmanger}" method="get">
+    <form class="form-signin" th:action="@{/taskmanager}" method="get">
         <button class="btn btn-md btn-success btn-block" type="Submit">Go to task manager</button>
     </form>
 </div>
+
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/sockjs-client/1.1.4/sockjs.min.js"></script>
+<script
+        src="https://cdnjs.cloudflare.com/ajax/libs/stomp.js/2.3.3/stomp.min.js"></script>
+<script src="/js/main.js"></script>
 </body>
 </html>

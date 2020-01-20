@@ -8,12 +8,18 @@ import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
+
 @SpringBootApplication
 public class TestProjectApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(TestProjectApplication.class, args);
+
 	}
+
 	@Bean
 	CommandLineRunner init(RoleRepository roleRepository) {
 

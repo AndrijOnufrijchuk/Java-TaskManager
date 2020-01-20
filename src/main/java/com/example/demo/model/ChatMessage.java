@@ -1,9 +1,18 @@
 package com.example.demo.model;
 
+
+import com.example.demo.service.CustomUserDetailsService;
+import org.springframework.beans.factory.annotation.Autowired;
+
 public class ChatMessage {
+
+    @Autowired
+    CustomUserDetailsService customUserDetailsService;
+
     private String content;
     private String sender;
     private MessageType type;
+
 
     public enum MessageType {
         CHAT,  JOIN

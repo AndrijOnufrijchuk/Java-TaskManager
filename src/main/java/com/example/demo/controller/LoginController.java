@@ -1,5 +1,6 @@
 package com.example.demo.controller;
 
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import com.example.demo.model.ChatMessage;
@@ -16,7 +17,11 @@ import org.springframework.stereotype.Controller;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+
+import java.security.Principal;
+
 @Controller
 public class LoginController {
     @Autowired
@@ -25,8 +30,8 @@ public class LoginController {
     public ModelAndView login() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
-        return modelAndView;
-    }
+        return modelAndView; }
+
 
     @RequestMapping(value = "/signup", method = RequestMethod.GET)
     public ModelAndView signup() {
@@ -34,10 +39,11 @@ public class LoginController {
         User user = new User();
         modelAndView.addObject("user", user);
         modelAndView.setViewName("signup");
-        return modelAndView;
-    }
+        return modelAndView; }
+
     @RequestMapping(value = "/signup", method = RequestMethod.POST)
     public ModelAndView createNewUser(@Valid User user, BindingResult bindingResult) {
+
         ModelAndView modelAndView = new ModelAndView();
         User userExists = userService.findUserByEmail(user.getEmail());
         if (userExists != null) {
@@ -54,8 +60,9 @@ public class LoginController {
             modelAndView.setViewName("login");
 
         }
-        return modelAndView;
-    }
+        userService.email = user.getEmail();
+        return modelAndView; }
+
     @RequestMapping(value = "/dashboard", method = RequestMethod.GET)
     public ModelAndView dashboard() {
         ModelAndView modelAndView = new ModelAndView();
@@ -65,20 +72,29 @@ public class LoginController {
         modelAndView.addObject("fullName", "Welcome " + user.getFullname());
         modelAndView.addObject("adminMessage", "Content Available Only for Users with Admin Role");
         modelAndView.setViewName("dashboard");
-        return modelAndView;
-    }
+        return modelAndView; }
+
     @RequestMapping(value = {"/","/home"}, method = RequestMethod.GET)
     public ModelAndView home() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home");
-        return modelAndView;
+        return modelAndView; }
+
+
+    @RequestMapping(value = "/username", method = RequestMethod.GET)
+    @ResponseBody
+    public String currentUserNameSimple(HttpServletRequest request) {
+        Principal principal = request.getUserPrincipal();
+        return principal.getName();
     }
     @MessageMapping("/chat.register")
     @SendTo("/topic/public")
     public ChatMessage register(@Payload ChatMessage chatMessage, SimpMessageHeaderAccessor headerAccessor) {
+
         headerAccessor.getSessionAttributes().put("username", chatMessage.getSender());
         return chatMessage;
     }
+
 
     @MessageMapping("/chat.send")
     @SendTo("/topic/public")
@@ -87,8 +103,6 @@ public class LoginController {
     }
 
 
-    @RequestMapping("/123")
-    public String index() {
-        return "123";
-    }
+
+
 }

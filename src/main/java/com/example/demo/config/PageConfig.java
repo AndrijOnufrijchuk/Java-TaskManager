@@ -21,7 +21,7 @@ public class PageConfig implements WebMvcConfigurer {
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/dashboard").setViewName("dashboard");
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/taskmanger").setViewName("taskmanger");
+        registry.addViewController("/taskmanager").setViewName("taskmanager");
     }
     @Bean
     public LayoutDialect layoutDialect() {
