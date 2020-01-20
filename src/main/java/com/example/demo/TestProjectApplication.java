@@ -20,6 +20,7 @@ public class TestProjectApplication {
 
 	}
 
+/*
 	@Bean
 	CommandLineRunner init(RoleRepository roleRepository) {
 
@@ -41,5 +42,6 @@ public class TestProjectApplication {
 		};
 
 	}
+*/
 
 }

@@ -96,6 +96,8 @@ public class LoginController {
     }
 
 
+
+
     @MessageMapping("/chat.send")
     @SendTo("/topic/public")
     public ChatMessage sendMessage(@Payload ChatMessage chatMessage) {
