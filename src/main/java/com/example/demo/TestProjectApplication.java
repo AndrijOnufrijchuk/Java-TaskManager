@@ -2,15 +2,10 @@ package com.example.demo;
 
 import com.example.demo.model.Role;
 import com.example.demo.repository.RoleRepository;
-import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.UserDetails;
 
 @SpringBootApplication
 public class TestProjectApplication {
@@ -20,7 +15,7 @@ public class TestProjectApplication {
 
 	}
 
-/*
+
 	@Bean
 	CommandLineRunner init(RoleRepository roleRepository) {
 
@@ -42,6 +37,6 @@ public class TestProjectApplication {
 		};
 
 	}
-*/
+
 
 }
