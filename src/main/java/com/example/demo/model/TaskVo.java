@@ -1,15 +1,11 @@
 package com.example.demo.model;
 
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.data.annotation.Id;
-
-public class Task {
-    @Id
+public class TaskVo {
     private String id;
     private String name;
     private String email;
     private String pwd;
-
+    //getters and setters
 
     public String getId() {
         return id;

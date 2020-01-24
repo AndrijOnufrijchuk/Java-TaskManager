@@ -20,7 +20,10 @@ public class PageConfig implements WebMvcConfigurer {
         registry.addViewController("/home").setViewName("home");
         registry.addViewController("/").setViewName("home");
         registry.addViewController("/login").setViewName("login");
-        registry.addViewController("/taskmanager").setViewName("taskmanager");
+        registry.addViewController("/index").setViewName("index");
+        registry.addViewController("/add-user").setViewName("add-user");
+        registry.addViewController("/update-user").setViewName("update-user");
+
     }
     @Bean
     public LayoutDialect layoutDialect() {
